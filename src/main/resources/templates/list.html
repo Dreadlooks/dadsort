@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Times</title>
+</head>
+<body>
+<div th:include="header"></div>
+<div class="container">
+    <br/>
+    <h1>Times</h1>
+    <hr/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="bg-primary" scope="col">Time A</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="player : ${teamA}">
+            <td th:text="${player}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class="bg-danger" scope="col">Time B</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="player : ${teamB}">
+            <td th:text="${player}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form action="/" method="post">
+        <input type="hidden" name="players" th:value="${players}">
+        <button type="submit" class="btn btn-warning">Atualizar</button>
+    </form>
+</div>
+</body>
+</html>

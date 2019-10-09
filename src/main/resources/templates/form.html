@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Escolha o sorteio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+</head>
+<body>
+<div th:include="header"></div>
+<br/>
+<form action="/" method="post">
+    <div class="container">
+    <h1>Sorteador de times</h1>
+    <hr/>
+    <div class="form-group">
+        <label for="players">Insira os nomes dos jogadores:</label>
+        <textarea class="form-control" id="players" name="players" rows="5" placeholder="- Nome 1"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Sortear</button>
+    </div>
+</form>
+</body>
+</html>
