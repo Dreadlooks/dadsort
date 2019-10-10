@@ -2,10 +2,7 @@ package br.com.gabriels.dadsort.service;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,31 +24,31 @@ public class TeamGeneratorService {
         Collections.shuffle(players);
     }
 
-    public List<String> teamA(List<String> players) {
-        randomize(players);
-        List<String> teamA = new ArrayList<>();
+    public List<String> teamA(List<String> players, int middle) {
 
-        float middle = (float) players.size() / 2;
-        int middleCorrect = Math.round(middle);
+//        int middle = getMiddle(players);
 
-        for (int i = 0; i < middleCorrect; i++) {
-            teamA.add(players.get(i));
-        }
-
+        List<String> teamA = players.subList(0, middle);
         return teamA;
     }
 
-    public List<String> teamB(List<String> players) {
-        List<String> teamB = new ArrayList<>();
-        float middle = players.size() / 2;
-        int remnantPlayers = (int) (players.size() - middle);
+    public List<String> teamB(List<String> players, int middle) {
 
+//        int middle = getMiddle(players);
 
-        for (int i = remnantPlayers; i < players.size(); i++) {
-            teamB.add(players.get(i));
-        }
-
+        List<String> teamB = players.subList(middle, players.size());
         return teamB;
     }
 
+    public int getMiddle(List<String> players) {
+        randomize(players);
+        int middle = players.size() / 2;
+
+        if(players.size() % 2 != 0) {
+            System.out.println("impar");
+            int random = new Random().nextInt(2);
+            middle += random;
+        }
+        return middle;
+    }
 }

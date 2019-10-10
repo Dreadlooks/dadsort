@@ -23,9 +23,10 @@ public class TeamGenerator {
     @PostMapping
     public String random(String players, Model model) {
         List<String> playersNames = teamGeneratorService.getPlayersNames(players);
+        int middle = teamGeneratorService.getMiddle(playersNames);
 
-        List<String> teamA = teamGeneratorService.teamA(playersNames);
-        List<String> teamB = teamGeneratorService.teamB(playersNames);
+        List<String> teamA = teamGeneratorService.teamA(playersNames, middle);
+        List<String> teamB = teamGeneratorService.teamB(playersNames, middle);
 
         model.addAttribute("players", players);
         model.addAttribute("teamA", teamA);

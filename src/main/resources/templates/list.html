@@ -14,11 +14,12 @@
         <thead>
         <tr>
             <th class="bg-primary" scope="col">Time A</th>
+            <th class="bg-primary" scope="col" th:text="${teamA.size()  + ' Jogadores'}"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="player : ${teamA}">
-            <td th:text="${player}"></td>
+            <td th:text="${player}" colspan="2"></td>
         </tr>
         </tbody>
     </table>
@@ -26,11 +27,12 @@
         <thead>
         <tr>
             <th class="bg-danger" scope="col">Time B</th>
+            <th class="bg-danger" scope="col" th:text="${teamB.size() + ' Jogadores'}">Time B</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="player : ${teamB}">
-            <td th:text="${player}"></td>
+            <td th:text="${player}" colspan="2"></td>
         </tr>
         </tbody>
     </table>
