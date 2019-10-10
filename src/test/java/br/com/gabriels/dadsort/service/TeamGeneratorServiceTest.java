@@ -1,21 +1,33 @@
 package br.com.gabriels.dadsort.service;
+import static org.assertj.core.api.Assertions.*;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import java.util.List;
 
-@RunWith(Arquillian.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class TeamGeneratorServiceTest {
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(TeamGeneratorService.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-    }
 
+    @Autowired
+    private TeamGeneratorService teamGeneratorService;
+
+    @Test
+    public void shouldGiveTheExactlyNumberOfFormattedNames() {
+        String players = "- Gabriel " +
+                "- Veronica " +
+                "- Yuri " +
+                "Yuri " +
+                "- Matheus";
+
+        List<String> playersNames = teamGeneratorService.getPlayersNames(players);
+
+        assertThat(4).isEqualTo(playersNames.size());
+    }
 }
